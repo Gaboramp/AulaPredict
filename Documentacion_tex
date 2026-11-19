@@ -1,0 +1,235 @@
+\documentclass[12pt, a4paper]{article}
+
+% ==================== PAQUETES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2.5cm, headheight=15pt]{geometry}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs, array, tabularx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+% ==================== PALETA ====================
+\definecolor{guindaIPN}{RGB}{108, 29, 69}
+\definecolor{grisOscuro}{RGB}{38, 42, 48}
+\definecolor{grisSuave}{RGB}{245, 246, 248}
+\definecolor{grisMedio}{RGB}{120, 126, 135}
+\definecolor{doradoAcento}{RGB}{184, 146, 62}
+
+% ==================== DATOS DEL PROYECTO (editar aquí) ====================
+\newcommand{\proyecto}{AulaPredict}
+\newcommand{\subtituloproyecto}{Detección temprana de riesgo académico}
+\newcommand{\tipodocumento}{Documentación de proyecto}
+\newcommand{\autorA}{Luis Joshua Rodríguez Urbano}
+\newcommand{\autorB}{Pablo Moisés García Gutiérrez}
+\newcommand{\autorC}{[Nombre completo del autor 3]}
+\newcommand{\autorD}{[Nombre completo del autor 4]}
+\newcommand{\programa}{Licenciatura en Matemática Algorítmica}
+\newcommand{\unidad}{Construcción Matemática}
+\newcommand{\profesor}{Juan Manuel Figueroa Flores}
+\newcommand{\version}{1.0}
+
+% ==================== HIPERVÍNCULOS ====================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=guindaIPN,
+    urlcolor=guindaIPN,
+    citecolor=guindaIPN,
+    pdftitle={\proyecto: \subtituloproyecto},
+    pdfauthor={\autorA, \autorB}
+}
+
+% ==================== TIPOGRAFÍA Y ESPACIADO ====================
+\setstretch{1.15}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=2pt, topsep=4pt}
+
+\titleformat{\section}
+  {\sffamily\Large\bfseries\color{guindaIPN}}{\thesection}{0.8em}{}
+  [{\color{doradoAcento}\titlerule[1pt]}]
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{grisOscuro}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}
+  {\sffamily\normalsize\bfseries\color{grisMedio}}{\thesubsubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{1.8em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.5em}
+
+\captionsetup{font=small, labelfont={bf,color=guindaIPN}, labelsep=period}
+
+% ==================== ENCABEZADO Y PIE ====================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{doradoAcento}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\sffamily\small\color{grisMedio}\proyecto}
+\fancyhead[R]{\sffamily\small\color{grisMedio}\leftmark}
+\fancyfoot[C]{\sffamily\small\color{grisMedio}\thepage}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% ==================== CAJAS (tcolorbox) ====================
+\tcbset{
+  notabox/.style={
+    enhanced, breakable, colback=grisSuave, colframe=grisSuave,
+    borderline west={3pt}{0pt}{doradoAcento},
+    fonttitle=\sffamily\bfseries\small, coltitle=guindaIPN,
+    attach title to upper={\par\vspace{2pt}}, left=10pt, right=8pt, top=6pt, bottom=6pt
+  },
+  defbox/.style={
+    enhanced, breakable, colback=white, colframe=guindaIPN,
+    boxrule=0.6pt, arc=2pt, fonttitle=\sffamily\bfseries\small,
+    colbacktitle=guindaIPN, coltitle=white, left=8pt, right=8pt
+  }
+}
+\newtcolorbox{nota}[1][Nota]{notabox, title={#1}}
+\newtcolorbox{definicion}[1][Definición]{defbox, title={#1}}
+
+% Marcador de pendientes (visible mientras se redacta)
+\newcommand{\pendiente}[1]{%
+  \begin{tcolorbox}[enhanced, colback=doradoAcento!10, colframe=doradoAcento, boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=3pt, bottom=3pt]
+    \sffamily\small\textbf{Por completar:} #1
+  \end{tcolorbox}}
+
+% ==================== CÓDIGO ====================
+\lstdefinestyle{proyecto}{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{guindaIPN}\bfseries,
+  commentstyle=\color{grisMedio}\itshape,
+  stringstyle=\color{doradoAcento!80!black},
+  numbers=left, numberstyle=\tiny\color{grisMedio}, numbersep=8pt,
+  backgroundcolor=\color{grisSuave},
+  frame=single, rulecolor=\color{grisSuave},
+  framesep=6pt, xleftmargin=18pt, framexleftmargin=14pt,
+  breaklines=true, showstringspaces=false, tabsize=4, aboveskip=8pt, belowskip=8pt,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+           {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1
+}
+\lstset{style=proyecto}
+\renewcommand{\lstlistingname}{Código}
+
+\begin{document}
+
+% ==================== PORTADA ====================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+
+    % --- Bloque superior oscuro con retícula y curvas ---
+    \fill[grisOscuro] (current page.north west) rectangle ([yshift=-11cm]current page.north east);
+
+    \begin{scope}
+        \clip (current page.north west) rectangle ([yshift=-11cm]current page.north east);
+        % retícula sutil
+        \foreach \i in {0,1,...,21}
+            \draw[white, opacity=0.05] ([xshift=\i cm]current page.north west) -- ([xshift=\i cm, yshift=-11cm]current page.north west);
+        \foreach \j in {0,1,...,11}
+            \draw[white, opacity=0.05] ([yshift=-\j cm]current page.north west) -- ([xshift=21cm, yshift=-\j cm]current page.north west);
+        % curvas (motivo matemático)
+        \begin{scope}[shift={(current page.north west)}]
+            \draw[doradoAcento, opacity=0.65, line width=1.4pt, domain=0:21, samples=150, smooth]
+                plot (\x, {-4.9 + 0.8*sin(\x*28)});
+            \draw[white, opacity=0.30, line width=0.8pt, domain=0:21, samples=150, smooth]
+                plot (\x, {-4.9 + 0.5*cos(\x*28 + 40)});
+            \draw[guindaIPN!70!white, opacity=0.55, line width=0.8pt, domain=0:21, samples=150, smooth]
+                plot (\x, {-4.9 + 0.8*sin(\x*28)*0.4});
+        \end{scope}
+    \end{scope}
+
+    % --- Franjas de acento ---
+    \fill[guindaIPN]   ([yshift=-11cm]current page.north west)   rectangle ([yshift=-11.3cm]current page.north east);
+    \fill[doradoAcento] ([yshift=-11.3cm]current page.north west) rectangle ([yshift=-11.4cm]current page.north east);
+
+    % --- Institución ---
+    \node[anchor=north west, text=white, align=left, inner sep=0]
+        at ([xshift=2.5cm, yshift=-1.8cm]current page.north west)
+        {\sffamily\bfseries\large INSTITUTO POLITÉCNICO NACIONAL\\[3pt]
+         \mdseries\normalsize Escuela Superior de Física y Matemáticas};
+
+    % --- Logo opcional (coloca logo.png junto al .tex) ---
+    \node[anchor=north east, inner sep=0]
+        at ([xshift=-2.5cm, yshift=-1.6cm]current page.north east)
+        {\IfFileExists{logo.png}{\includegraphics[height=1.8cm]{logo.png}}{}};
+
+    % --- Título ---
+    \node[anchor=south west, text=white, align=left, inner sep=0, text width=16cm]
+        at ([xshift=2.5cm, yshift=-10.3cm]current page.north west)
+        {{\sffamily\bfseries\small\color{doradoAcento}\MakeUppercase{\tipodocumento}}\\[10pt]
+         {\fontsize{44}{48}\selectfont\sffamily\bfseries \proyecto}\\[8pt]
+         {\sffamily\Large\color{grisSuave} \subtituloproyecto}};
+
+    % --- Descripción breve ---
+    \node[anchor=north west, text=grisOscuro, align=left, inner sep=0, text width=16cm]
+        at ([xshift=2.5cm, yshift=-12.6cm]current page.north west)
+        {\sffamily\small\color{grisMedio}
+         Modelo matemático para estimar el riesgo de reprobación de un alumno a lo largo del curso,
+         a partir de calificaciones, asistencia, entregas y factores de contexto.};
+
+    % --- Tarjeta de datos ---
+    \node[anchor=south west, fill=grisSuave, inner sep=14pt, text width=15.2cm, align=left] (card)
+        at ([xshift=2.5cm, yshift=2.2cm]current page.south west)
+        {\sffamily
+         {\color{guindaIPN}\bfseries\footnotesize AUTORES}\\[5pt]
+         \begin{tabular}{@{}p{7.3cm}p{7.3cm}@{}}
+            \autorA & \autorB \\[4pt]
+            \autorC & \autorD
+         \end{tabular}\\[10pt]
+         {\color{doradoAcento}\rule{\linewidth}{0.6pt}}\\[8pt]
+         \begin{tabular}{@{}>{\color{guindaIPN}\bfseries\footnotesize}p{3.6cm}p{11.2cm}@{}}
+            PROGRAMA & \programa \\[5pt]
+            UNIDAD DE APRENDIZAJE & \unidad \\[5pt]
+            PROFESOR(A) & \profesor \\[5pt]
+            FECHA & \today \\[5pt]
+         \end{tabular}};
+    \draw[guindaIPN, line width=3.5pt] (card.north west) -- (card.south west);
+
+\end{tikzpicture}
+\null
+\end{titlepage}
+
+% ==================== ÍNDICE ====================
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+% ==================== SECCIONES BASE ====================
+\section{Introducción}
+\newpage
+\section{Planteamiento del Problema}
+
+En el ámbito académico universitario, identificar a tiempo qué alumnos tienen mayor riesgo de reprobar una asignatura representa un reto constante tanto para el seguimiento escolar como para la toma de decisiones oportunas. Muchas veces el rezago no ocurre de golpe al final del curso, sino que se va construyendo de manera gradual a lo largo del periodo a partir de calificaciones parciales bajas, falta de constancia en asistencia, tareas o participaciones, y factores externos o de contexto que influyen en el tiempo y la energía disponibles para estudiar, como el trabajo, el traslado o la carga de materias.
+
+Cuando estas señales se revisan de forma aislada o únicamente al cierre de cada evaluación, es más difícil detectar a tiempo a quienes necesitan apoyo. Por ello, este proyecto busca construir un modelo matemático que permita reunir las características relevantes de un alumno y estimar su riesgo de reprobación conforme avanza el curso, ponderando cada factor según el peso que le asignamos dentro de nuestro criterio de evaluación.
+
+Es importante señalar que, al no contar aún con herramientas más avanzadas de probabilidad y estadística, optamos por construir un modelo simplificado basado en parámetros y pesos definidos según nuestro criterio. Esta simplificación resulta práctica y transparente para el equipo, aunque implica asumir cierto margen de error o aproximación en los resultados obtenidos.
+\newpage
+\section{Datos que estimamos}
+En esta sección definimos qué información del alumno vamos a utilizar para evaluar su riesgo de reprobar. Explicaremos por qué cada variable es relevante para el desempeño académico, en qué escala o unidad se mide y qué peso o porcentaje (sumando $100$) le asignamos según su importancia dentro del modelo.
+\newpage
+\subsection{Modelado de la base}
+Aquí documentamos cómo se organizan y almacenan los datos del alumno. Incluimos el diseño de la estructura de datos (tablas, campos y relaciones), ejemplos de inserción de registros y fragmentos de código de referencia para trabajar con el mismo formato.
+
+\section{Modelo matemático}
+
+\subsection{Fórmulas}
+Aquí se detallan de forma explícita las ecuaciones y expresiones matemáticas empleadas en el modelo, junto con el significado exacto de cada parámetro, índice, vector, matriz o variable involucrada, para evitar ambigüedades al programarlas.
+\newpage
+\section{Implementación en Python}
+En esta sección documentamos la traducción del modelo matemático a código en Python. Se describen las funciones o módulos principales, la entrada y salida de cada bloque, las decisiones de implementación y ejemplos de ejecución para verificar el comportamiento del sistema.
+\newpage
+\end{document}
