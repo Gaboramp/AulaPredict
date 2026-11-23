@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Materias — AulaPredict{% endblock %}
+{% block contenido %}
+  <h1>Materias</h1>
+  <p><a class="boton" href="{{ url_for('materia_nueva') }}">Nueva materia</a></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre de la materia</th>
+        <th>Grupo</th>
+        <th>Evaluaciones</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in materias %}
+        <tr>
+          <td>{{ m.nombre_materia }}</td>
+          <td>{{ m.grupo }}</td>
+          <td>{{ m.num_evaluaciones }}</td>
+          <td class="acciones">
+            <a href="{{ url_for('materia_ver', id_materia=m.id_materia) }}">Ver</a>
+            <a href="{{ url_for('materia_editar', id_materia=m.id_materia) }}">Editar</a>
+            <a href="{{ url_for('materia_borrar', id_materia=m.id_materia) }}">Eliminar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

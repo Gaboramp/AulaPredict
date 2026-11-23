@@ -1,0 +1,244 @@
+/* Estilo sencillo de la página de captura de AulaPredict. */
+
+:root {
+  --guinda: #6c1d45;
+  --texto: #2a2d33;
+  --suave: #f4f5f7;
+  --borde: #d5d8de;
+  --aviso: #8a6d1d;
+  --aviso-fondo: #fff6db;
+  --error: #8b1e1e;
+  --error-fondo: #fdecec;
+  --exito: #1d5a32;
+  --exito-fondo: #e7f6ec;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--texto);
+  background: #fff;
+  line-height: 1.45;
+}
+
+header {
+  background: var(--guinda);
+  color: #fff;
+  padding: 0.8rem 1.5rem 0;
+}
+
+.encabezado .marca {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.encabezado .lema {
+  margin: 0.15rem 0 0.6rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+nav {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover {
+  border-bottom-color: #d4b36a;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.2rem 1.5rem 3rem;
+}
+
+footer {
+  border-top: 1px solid var(--borde);
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1, h2 {
+  color: var(--guinda);
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th, td {
+  border: 1px solid var(--borde);
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--suave);
+}
+
+tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.acciones a,
+.acciones button {
+  margin-right: 0.4rem;
+}
+
+a {
+  color: var(--guinda);
+}
+
+.boton, button {
+  display: inline-block;
+  background: var(--guinda);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.boton:hover, button:hover {
+  opacity: 0.92;
+  color: #fff;
+}
+
+button.peligro {
+  background: var(--error);
+}
+
+.peligro-texto {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.campo {
+  margin-bottom: 0.9rem;
+  max-width: 36rem;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--borde);
+  font-size: 1rem;
+}
+
+.error-campo {
+  color: var(--error);
+  margin: 0.25rem 0 0;
+  font-size: 0.92rem;
+}
+
+.mensajes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.mensaje {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.4rem;
+  border-left: 4px solid #888;
+  background: var(--suave);
+}
+
+.mensaje.exito {
+  border-color: var(--exito);
+  background: var(--exito-fondo);
+  color: var(--exito);
+}
+
+.mensaje.aviso {
+  border-color: var(--aviso);
+  background: var(--aviso-fondo);
+  color: var(--aviso);
+}
+
+.mensaje.error {
+  border-color: var(--error);
+  background: var(--error-fondo);
+  color: var(--error);
+}
+
+.ficha {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 0.3rem 1rem;
+  max-width: 50rem;
+}
+
+.ficha dt {
+  font-weight: 600;
+}
+
+.ficha dd {
+  margin: 0;
+}
+
+.recuento {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.recuento li {
+  background: var(--suave);
+  border: 1px solid var(--borde);
+  padding: 1rem 1.4rem;
+  min-width: 10rem;
+}
+
+.recuento a {
+  text-decoration: none;
+  color: var(--texto);
+}
+
+.recuento strong {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--guinda);
+}
+
+.dato-fijo {
+  margin: -0.4rem 0 0.9rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.destacado {
+  font-weight: 600;
+}
